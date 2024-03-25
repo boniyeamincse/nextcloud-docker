@@ -1,0 +1,16 @@
+nextcloud-docker/
+│
+├── docker-compose.yml
+│
+├── nextcloud/
+│   ├── Dockerfile
+│   └── config/
+│       └── config.php
+│
+├── apache/
+│   ├── Dockerfile
+│   └── nextcloud.conf
+│
+└── mariadb/
+    ├── Dockerfile
+    └── init.sql

@@ -1,0 +1,3 @@
+CREATE DATABASE nextcloud;
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'%' IDENTIFIED BY 'care@#17189';
+FLUSH PRIVILEGES;

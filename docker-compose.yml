@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  nextcloud:
+    build:
+      context: ./nextcloud
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud:/var/www/html/nextcloud
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: care@#$1718
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: care@#17189
+
+  apache:
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - nextcloud:/var/www/html/nextcloud
+      - ./apache/ssl:/etc/letsencrypt
+    depends_on:
+      - nextcloud
+
+volumes:
+  nextcloud:
+  mariadb:
